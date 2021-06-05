@@ -14,45 +14,6 @@
                         <div class="col-sm-6">
                             <a href="#addBookModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Record</span></a>
                           
-                            <!-- Add Modal HTML -->
-                            <div id="addBookModal" class="modal fade">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <form action="/book/add" method="POST">
-                                            <div class="modal-header">						
-                                                <h4 class="modal-title">Add Book Details</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            </div>
-                                            <div class="modal-body">					
-                                                <div class="form-group">
-                                                    <label for="isbn">ISBN</label>
-                                                    <input type="text" class="form-control" name="isbn" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="title">Title</label>
-                                                    <input type="text" class="form-control" name="title" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="author">Author</label>
-                                                    <input type="text" class="form-control" name="author" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="description">Description</label>
-                                                    <textarea class="form-control" name="description" required></textarea>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="publisher">Publisher</label>
-                                                    <input type="text" class="form-control" name="publisher" required>
-                                                </div>					
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                                <input type="submit" class="btn btn-success" value="Add">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
     
                         </div>
                     </div>
@@ -167,6 +128,46 @@
         </div>        
     </div>
 
-  
+
+    <!-- Add Modal HTML -->
+    <div id="addBookModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/book/add" method="POST">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Add Book Details</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">					
+                        <div class="form-group">
+                            <label for="isbn">ISBN</label>
+                            <input type="text" class="form-control" name="isbn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" name="author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="publisher">Publisher</label>
+                            <input type="text" class="form-control" name="publisher" required>
+                        </div>					
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <%- include('./root/end.ejs') %>
