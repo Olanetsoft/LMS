@@ -2,7 +2,6 @@ require("dotenv").config();
 const path = require("path");
 const db = require("./config/database");
 const express = require("express");
-
 const app = express();
 
 //set this value globally in our application
@@ -17,9 +16,44 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.get("/", (req, res) => {
-  res.render("index", {
-    pageTitle: "Home | LMS",
-  });
+  db.searchByValue(
+    {
+      operation: "search_by_value",
+      schema: "book",
+      table: "record",
+      searchValue: "*",
+      searchAttribute: "record_id",
+      attributes: ["*"],
+    },
+    (err, response) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      res.render("index", {
+        pageTitle: "Home | LMS",
+        records: response.data,
+      });
+    }
+  );
+});
+
+app.post("/book/add", (req, res) => {
+  const { body } = req;
+  db.insert(
+    {
+      operation: "insert",
+      schema: "book",
+      table: "record",
+      records: [body],
+    },
+    (err, response) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+
+      res.redirect(302, "/");
+    }
+  );
 });
 
 module.exports = app;

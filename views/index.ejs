@@ -27,16 +27,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>012345678</td>
-                            <td>Getting Started With HarperDb</td>
-                            <td>Idris Olubisi</td>
-                            <td>How HarperDb works with NodeJS</td>
-                            <td>Hashnode</td>
-                            <td>
-                                <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                            </td>
+                        <% if (records.length > 0) { %>
+                        <% for (let rec of records) { %>
+                            <tr>
+                                <td><%= rec.isbn %></td>
+                                <td><%= rec.title %></td>
+                                <td><%= rec.author %></td>
+                                <td><%= rec.description %></td>
+                                <td><%= rec.publisher %></td>
+                                <td>
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                            <% } %>
+                            
+                            <% } else { %>
+                                <tr>
+                                    <td>012345678</td>
+                                    <td>Getting Started With HarperDb</td>
+                                    <td>Idris Olubisi</td>
+                                    <td>How HarperDb works with NodeJS</td>
+                                    <td>Hashnode</td>
+                                    <td>
+                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    </td>
+                                </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
@@ -47,31 +65,31 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form action="/book/add" method="POST">
                     <div class="modal-header">						
                         <h4 class="modal-title">Add Book Details</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">					
                         <div class="form-group">
-                            <label>ISBN</label>
-                            <input type="text" class="form-control" required>
+                            <label for="isbn">ISBN</label>
+                            <input type="text" class="form-control" name="isbn" required>
                         </div>
                         <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" required>
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" required>
                         </div>
                         <div class="form-group">
-                            <label>Author</label>
-                            <input type="text" class="form-control" required>
+                            <label for="author">Author</label>
+                            <input type="text" class="form-control" name="author" required>
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" required></textarea>
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label>Publisher</label>
-                            <input type="text" class="form-control" required>
+                            <label for="publisher">Publisher</label>
+                            <input type="text" class="form-control" name="publisher" required>
                         </div>					
                     </div>
                     <div class="modal-footer">
