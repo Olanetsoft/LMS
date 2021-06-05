@@ -50,6 +50,24 @@ app.post("/book/add", (req, res) => {
       if (err) {
         return res.status(500).json(err);
       }
+      res.redirect(302, "/");
+    }
+  );
+});
+
+app.post("/book/edit", (req, res) => {
+  const { body } = req;
+  db.update(
+    {
+      operation: "update",
+      schema: "book",
+      table: "record",
+      records: [body],
+    },
+    (err, response) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
 
       res.redirect(302, "/");
     }

@@ -12,7 +12,7 @@
                             <h2><b>Library</b> Management System</h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Record</span></a>
+                            <a href="#addBookModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Record</span></a>
                         </div>
                     </div>
                 </div>
@@ -37,16 +37,57 @@
                                 <td><%= rec.publisher %></td>
                                 <td>
                                      <!-- Edit Modal HTML -->
-                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    
+                                    <a href="#editBookModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <!-- Edit Modal HTML -->
+                                    <div id="editBookModal" class="modal fade">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form action="/book/edit" method="POST">
+                                                    <div class="modal-header">						
+                                                        <h4 class="modal-title">Edit Record</h4>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body">					
+                                                        <div class="form-group">
+                                                            <label>ISBN</label>
+                                                            <input type="text" class="form-control" name="isbn" value="<%= rec.isbn %>" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Title</label>
+                                                            <input type="text" class="form-control" name="title" value="<%= rec.title %>" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Author</label>
+                                                            <input type="text" class="form-control" name="author" value="<%= rec.author %>" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <textarea class="form-control" name="description" required><%= rec.description %></textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Publisher</label>
+                                                            <input type="text" class="form-control" name="publisher" value="<%= rec.publisher %>" required>
+                                                        </div>					
+                                                        <input type="hidden" class="form-control" name="record_id" value="<%= rec.record_id %>"> 
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                        <input type="submit" class="btn btn-info" value="Save">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!-- Delete Modal HTML -->
-                                    <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    <div id="deleteEmployeeModal" class="modal fade">
+                                    <a href="#deleteBookModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <div id="deleteBookModal" class="modal fade">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <form action="/book/delete/<%= rec.record_id %>" method="POST">
+                                                    <input type="hidden" class="form-control" name="record_id" value="<%= rec.record_id %>"> 
                                                     <div class="modal-header">						
-                                                        <h4 class="modal-title">Delete Employee</h4>
+                                                        <h4 class="modal-title">Delete Record</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                     </div>
                                                     <div class="modal-body">					
@@ -61,7 +102,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                  
+                                    
                                 </td>
                             </tr>
                             <% } %>
@@ -74,8 +115,8 @@
                                     <td>How HarperDb works with NodeJS</td>
                                     <td>Hashnode</td>
                                     <td>
-                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        <a href="#" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <a href="#" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                     </td>
                                 </tr>
                         <% } %>
@@ -86,7 +127,7 @@
     </div>
 
     <!-- Edit Modal HTML -->
-    <div id="addEmployeeModal" class="modal fade">
+    <div id="addBookModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="/book/add" method="POST">
@@ -124,47 +165,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Edit Modal HTML -->
-    <div id="editEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">						
-                        <h4 class="modal-title">Edit Employee</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">					
-                        <div class="form-group">
-                            <label>ISBN</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Author</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Publisher</label>
-                            <input type="text" class="form-control" required>
-                        </div>					
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-info" value="Save">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     
 
     <%- include('./root/end.ejs') %>
