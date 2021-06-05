@@ -56,4 +56,24 @@ app.post("/book/add", (req, res) => {
   );
 });
 
+app.post("/book/delete/:record_id", (req, res) => {
+  const { record_id } = req.params;
+
+  db.delete(
+    {
+      operation: "delete",
+      schema: "book",
+      table: "record",
+      hashValues: [record_id],
+    },
+    (err, response) => {
+      if (err) {
+        return res.status(500).json(err);
+      }
+
+      res.redirect(302, "/");
+    }
+  );
+});
+
 module.exports = app;

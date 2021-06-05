@@ -37,7 +37,9 @@
                                 <td><%= rec.publisher %></td>
                                 <td>
                                     <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    
                                     <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                  
                                 </td>
                             </tr>
                             <% } %>
@@ -145,7 +147,8 @@
     <div id="deleteEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <% for (let rec of records) { %>
+                <form action="/book/delete/<%= rec.record_id %>" method="POST">
                     <div class="modal-header">						
                         <h4 class="modal-title">Delete Employee</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -159,6 +162,7 @@
                         <input type="submit" class="btn btn-danger" value="Delete">
                     </div>
                 </form>
+                <% } %> 
             </div>
         </div>
     </div>
